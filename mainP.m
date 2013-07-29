@@ -99,7 +99,7 @@ finalblue= runPoisson(croppedImg, tgt, croppedMask, position, 3);
 %Add all three color channels together and show the final image
 %------------------------------------
 final= finalred+finalgreen+finalblue;
-figure('Name', 'Final Blended Image');
+figure('Name', 'Step 3: Final Blended Image');
 imshow(final);
 
 
