@@ -1,0 +1,12 @@
+function [ r, g, b ] = decomposeRGB( croppedImg )
+% Code adapted from the Computer Graphics Group at Technische Universität
+% Berlin and Merza Klaghstan
+%------------------------------------
+% source image - croppedImg
+% [r,g,b]
+% decompose a color image (RGB) into its seperate RGB components
+
+
+r = croppedImg(:, :, 1);
+g = croppedImg(:, :, 2);
+b = croppedImg(:, :, 3);

@@ -1,0 +1,27 @@
+function [cImg] = createImage(croppedImg, tgt, srcMask, position,clrchan)
+% Composes two images given a source image, a selection mask, a target
+% image and the position of the source image in the target image.
+% Returns the composed image and a binary mask with ones for every pixel
+% that was copied from the source image.
+
+% Extract target image behind source image.
+editedTargetImageSection = imcrop(tgt, [position(1), position(2), size(croppedImg, 2) - 1, size(croppedImg, 1) - 1]);
+
+% Delete all pixels from extracted target image that are covered by the
+% overlayed source image.
+ 
+   tmp = editedTargetImageSection(:, :, clrchan); 
+   tmp(srcMask) = 0; 
+   editedTargetImageSection(:, :, clrchan) = tmp; 
+
+
+% Add masked source image to target image.
+editedTargetImageSection = editedTargetImageSection + croppedImg;
+
+% Copy edited part of the target image back into the complete target image.
+cImg = tgt;
+cImg(position(2):position(2)+size(croppedImg, 1) - 1, position(1):position(1)+size(croppedImg, 2) - 1, :) = editedTargetImageSection;
+
+
+end
+
